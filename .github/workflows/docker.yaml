@@ -39,4 +39,4 @@ jobs:
 
       - name: build and push container
         run: |
-          build-docker-release
+          make build-docker-release
