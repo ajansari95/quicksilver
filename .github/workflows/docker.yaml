@@ -39,4 +39,5 @@ jobs:
 
       - name: build and push container
         run: |
-          make build-docker-release
+          DOCKER_BUILDKIT=1 /usr/bin/docker build . -f Dockerfile -t ajansari95/quicksilver:latest
+          /usr/bin/docker push ajansari95/quicksilver:latest 
