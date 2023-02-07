@@ -41,5 +41,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: quicksilverzone/quicksilver:latest
+          tags: ajansari95/quicksilver:latest
           file: Dockerfile
