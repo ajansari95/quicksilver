@@ -9,13 +9,21 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -  name: Force Install GIT latest
-         run: |
-              apt-get install -y software-properties-common \
-              && apt-get update \
-              && add-apt-repository -y ppa:git-core/ppa \
-              && apt-get update \
-              && apt-get install -y git
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.19.4'
+
+      - name: Setup Golang caches
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-golang-
+          
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
